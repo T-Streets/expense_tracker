@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
 import XpenseTracker from './Components/XpenseTracker';
-
+import Login from './Components/Login';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Xpense Tracker</h1>
-        </header>
-        <XpenseTracker />
-
+        <BrowserRouter>
+          <div>
+            <Route exact path='/' component={Login} />
+            <Route exact path='/xpense-tracker' component={XpenseTracker} />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
