@@ -37,6 +37,7 @@ const createExpenseMutation = gql`
 class XpenseTracker extends Component {
 
   createExpense = async state => {
+    console.log(this.props)
     await this.props.createExpense({
         variables: {
             state,
@@ -54,7 +55,7 @@ class XpenseTracker extends Component {
 
   render() {
         /**
-         * sets data in db as props
+         * sets data in db as props for this component
          */
         const {data: {loading, expenses}} = this.props;
         if(loading) {

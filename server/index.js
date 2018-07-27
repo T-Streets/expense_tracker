@@ -26,12 +26,21 @@ const typeDefs = `
       name: String!,
       amount: String!
   }
+  type User {
+      id: ID!,
+      email: String!,
+      password: String!,
+      username: String!
+  }
   type Mutation {
       createExpense(type: String!, name: String!, amount: String!): Expense
-      removeExpense(id: ID!): Boolean
+      createUser(email: String!, password: String!, username: String!): User
   }
 `
-
+/**
+ * Creates new instance of Expense type
+ * if successful, saves new data to DB
+ */
 const resolvers = {
   Query: {
     hello: (_, { name }) => `Hello ${name || 'World'}`,
@@ -43,11 +52,12 @@ const resolvers = {
         await expense.save();
         return expense
       },
-      removeExpense: async (_, { id }) => {
-          await Expense.findByIdAndRemove(id);
-          return true;
+      createUser: async (_, { email, password, username }) => {
+          const user = new User({ email, password, username});
+          await expense.save();
+          return user
       }
-  }
+  },
 }
 
 const server = new GraphQLServer({ typeDefs, resolvers })
