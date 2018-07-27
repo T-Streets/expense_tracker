@@ -10,6 +10,12 @@ const Expense = mongoose.model('Expense', {
 
 })
 
+const User = mongoose.model('Expense', {
+    email: String,
+    password: String,
+    username: String
+})
+
 /**
  * Sets Schema for DB
  * creates a type for db = expense
